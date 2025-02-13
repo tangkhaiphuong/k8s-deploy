@@ -1,0 +1,19 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: echo
+  namespace: argocd
+spec:
+  destination:
+    namespace: default
+    server: https://kubernetes.default.svc
+  project:  k8s-deploy-project
+  source:
+    chart: echo
+    repoURL: https://your-helm-repo-url
+    targetRevision: 1.0.0
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
