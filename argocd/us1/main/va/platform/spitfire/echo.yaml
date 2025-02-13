@@ -8,12 +8,14 @@ spec:
   destination:
     namespace: default
     server: https://kubernetes.default.svc
-  project:  k8s-deploy-project
+  project: oci
   source:
-    chart: echo
-    repoURL: https://your-helm-repo-url
-    targetRevision: 1.0.0
+    chart: ealenn/echo-server
+    repoURL: https://ealenn.github.io/charts
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
+    syncOptions:
+      - ApplyOutOfSyncOnly=true
+      - FailOnSharedResource=true
